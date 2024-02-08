@@ -4,16 +4,15 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['selectFileButton', 'photoFile'];
 
-  connect() {
-
-    this.photoFileTarget.addEventListener('change', () => {
-      console.log('file attached');
-      this.element.submit();
-    });
+  connect () {
   }
 
-  selectFile(e) {
+  selectFile (e) {
     e.preventDefault();
     this.photoFileTarget.click();
+  }
+
+  submitForm () {
+    this.element.submit();
   }
 }
