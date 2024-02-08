@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col">
+        <div class="py-4 px-4">
+        <div class="mb-5">
+        <%= link_to root_path do %>
+            <%= image_tag "instagram-sidebar-logo.png", width: "103" %>
+        <% end %>
+        </div>
+
+        <div class="mb-4">
+        <%= link_to "",data: {"bs-toggle" => "modal", "bs-target" => "#exampleModal"}, class: "sidebar-link" do %>
+            <div class ="d-flex align-items-center">
+                <%= image_tag "icons/more.png", width: "24", class: "me-3" %>
+                Create
+            </div>
+        <% end %>
+        </div>
+
+        <div>
+        <%= link_to "Log out", destroy_user_session_path, data: {"turbo-method": "delete"} %>
+        </div>
+
+        </div>
+    </div>
+        <div class="col-7">
+        2 of 3 (wider)
+        </div>
+        <div class="col-3">
+        3 of 3
+        </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <p class="modal-title fs-6 fw-semibold" id="exampleModalLabel">Create new post</p>
+      </div>
+      <div class="modal-body d-flex justify-content-center align-items-center">
+      <div class="py-5" style="margin-left: auto; margin-right: auto; text-align: center;">
+        <%= image_tag "icons/image-gallery.png", width: "96", class: "mb-3" %>
+        <p class="fs-5">Drag photos and videos here</p>
+        
+        <%= form_with model: Post.new, data: { controller: "new-post-form" } do |f| %> <%= %>
+          <%= link_to "Select from computer", "", data: { action: "click->new-post-form#selectFile" }, id: "post-select-file-button", class:"btn btn-primary insta-primary" %><%= %>
+          <%= f.file_field :photo, data: { "new-post-form-target": "photoFile" }, class: "d-none" %>
+        <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
