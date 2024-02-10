@@ -9,9 +9,25 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= favicon_link_tag asset_path("instagram_icon.png") %>
+    <script src="https://cdn.jsdelivr.net/gh/silvia-odwyer/pixels.js@0.8.1/dist/Pixels.js"></script>
   </head>
 
   <body>
+    <% if user_signed_in? %>
+        <div class="row">
+      <div class="col">
+      <%= render "layouts/nav_sidebar" %>
+      </div>
+          <div class="col-7">
+            <%= yield %>
+          </div>
+          <div class="col-3">
+          3 of 3
+          </div>
+    </div>
+    <%= render "layouts/create_post_modal" %>
+  <% else %> 
     <%= yield %>
-  </body>
+<% end %>
+</body>
 </html>
