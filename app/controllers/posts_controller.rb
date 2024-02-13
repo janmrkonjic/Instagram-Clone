@@ -14,12 +14,16 @@ class PostsController < ApplicationController
     def update
         @post = Post.find(params[:id])
         @post.update(post_params)
+        if @post.published?
+            redirect_to root_path
+        else
         redirect_to edit_post_path(@post)
+        end
     end
 
     private
 
     def post_params
-        params.require(:post).permit(:photo, :x_offset, :y_offset, :width, :height, :status, :filter_name)
+        params.require(:post).permit(:photo, :x_offset, :y_offset, :width, :height, :status, :filter_name, :description)
     end
 end

@@ -1,8 +1,15 @@
 <div class="py-5 d-flex justify-content-center align-items-center" data-controller="apply-filter">
     <div>
     <h1 class="fs-3">Applying filters</h1>
-        <%= image_tag @post.photo.variant(resize_to_limit: Post::RESIZE_DIMENSIONS, crop: [@post.x_offset.to_f, @post.y_offset.to_f, @post.width.to_f, @post.height.to_f]), data: { "apply-filter-target" => "hiddenImage", filter: "" }, class: "mb-5 d-none" %>
-        <%= image_tag @post.photo.variant(resize_to_limit: Post::RESIZE_DIMENSIONS, crop: [@post.x_offset.to_f, @post.y_offset.to_f, @post.width.to_f, @post.height.to_f]), data: { "apply-filter-target" => "image", filter: "" }, class: "mb-5" %>
+        <%= image_tag @post.photo.variant(resize_to_limit: Post::RESIZE_DIMENSIONS,
+        crop: [@post.x_offset.to_f, @post.y_offset.to_f, @post.width.to_f, @post.height.to_f]), 
+        data: { "apply-filter-target" => "hiddenImage", filter: "" }, 
+        class: "mb-5 d-none" %>
+
+        <%= image_tag @post.photo.variant(resize_to_limit: Post::RESIZE_DIMENSIONS, 
+        crop: [@post.x_offset.to_f, @post.y_offset.to_f, @post.width.to_f, @post.height.to_f]), 
+        data: { "apply-filter-target" => "image", filter: "" }, 
+        class: "mb-5" %>
 
         <div class="d-flex align-content-around flex-wrap mb-5">
             <% PhotoFilter::FILTERS.each do |filter| %>
