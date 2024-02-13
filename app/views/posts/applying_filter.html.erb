@@ -1,87 +1,19 @@
-<%
-    filters = [
-        "horizontal_lines",
-        "extreme_offset_blue",
-        "extreme_offset_green",
-        "offset_green",
-        "extra_offset_blue",
-        "extra_offset_red",
-        "extra_offset_green",
-        "extreme_offset_red",
-        "specks_redscale",
-        "eclectic",
-        "pane",
-        "diagonal_lines",
-        "green_specks",
-        "casino",
-        "yellow_casino",
-        "green_diagonal_lines",
-        "offset",
-        "offset_blue",
-        "neue", 
-        "sunset", 
-        "specks", 
-        "wood", 
-        "lix", 
-        "ryo", 
-        "bluescale", 
-        "solange", 
-        "evening", 
-        "crimson", 
-        "teal_min_noise", 
-        "phase", 
-        "dark_purple_min_noise", 
-        "coral", 
-        "darkify", 
-        "incbrightness", 
-        "incbrightness2", 
-        "invert", 
-        "sat_adj", 
-        "lemon", 
-        "pink_min_noise", 
-        "frontward", 
-        "vintage", 
-        "perfume", 
-        "serenity", 
-        "pink_aura", 
-        "haze", 
-        "cool_twilight", 
-        "blues", 
-        "horizon", 
-        "mellow", 
-        "solange_dark", 
-        "solange_grey", 
-        "zapt", 
-        "eon", 
-        "aeon", 
-        "matrix", 
-        "cosmic", 
-        "min_noise", 
-        "red_min_noise", 
-        "matrix2", 
-        "purplescale", 
-        "radio", 
-        "twenties", 
-        "ocean", 
-        "a", 
-        "pixel_blue", 
-        "greyscale", 
-        "grime", 
-        "redgreyscale", 
-        "retroviolet", 
-        "greengreyscale", 
-        "warmth", 
-        "green_med_noise", 
-        "green_min_noise", 
-        "blue_min_noise", 
-        "rosetint", 
-        "purple_min_noise"
-    ]
-%>
+<div class="py-5 d-flex justify-content-center align-items-center" data-controller="apply-filter">
+    <div>
+    <h1 class="fs-3">Applying filters</h1>
+        <%= image_tag @post.photo.variant(resize_to_limit: Post::RESIZE_DIMENSIONS, crop: [@post.x_offset.to_f, @post.y_offset.to_f, @post.width.to_f, @post.height.to_f]), data: { "apply-filter-target" => "hiddenImage", filter: "" }, class: "mb-5 d-none" %>
+        <%= image_tag @post.photo.variant(resize_to_limit: Post::RESIZE_DIMENSIONS, crop: [@post.x_offset.to_f, @post.y_offset.to_f, @post.width.to_f, @post.height.to_f]), data: { "apply-filter-target" => "image", filter: "" }, class: "mb-5" %>
 
-<div data-controller="apply-filter">
-    <% filters.each do |filter| %>
-       <%= image_tag @post.photo.variant(resize_to_limit: Post::RESIZE_DIMENSIONS, crop: [@post.x_offset.to_f, @post.y_offset.to_f, @post.width.to_f, @post.height.to_f]), data: { "apply-filter-target" => "image", filter: filter }, class: "mb-5" %>
-       <br>
-    <% end %>
+        <div class="d-flex align-content-around flex-wrap mb-5">
+            <% PhotoFilter::FILTERS.each do |filter| %>
+                <%= button_tag filter, data: { "apply-filter-target" => "filterButton", "action" => "apply-filter#applyFilter", "filter-name" => filter }, class: "btn btn-primary insta-primary me-2 mb-2" %>
+            <% end %>
+        </div>
+        
+        <%= form_with model: @post, data: { "apply-filter-target" => "form" } do |f| %>
+            <%= f.hidden_field :filter_name, data: { "apply-filter-target" => "filterName" } %>
+            <%= f.hidden_field :status, value: "final_draft" %>
+            <%= f.submit "Apply filter", class: "btn btn-primary insta-primary" %>
+        <% end %>
+        </div>
 </div>
