@@ -7,6 +7,12 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
   has_many :posts, dependent: :destroy
+  has_many :followings, dependent: :destroy
+  has_many :following_users, through: :followings, source: :following_user
+  has_many :reverse_followings, foreign_key: :following_user_id, class_name: "Following"
+  has_many :followers, through: :reverse_followings, source: :user
+
+  has_one_attached :avatar
 
   attr_writer :login
   def login
