@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  RESIZE_DIMENSIONS = [2000, 2000]
+  RESIZE_DIMENSIONS = [500, 500]
   enum :status, [:cropping, :applying_filter, :final_draft, :published]
   
   belongs_to :user

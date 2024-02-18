@@ -23,11 +23,11 @@ second_user = other_users[1]
 third_user = other_users[2]
 
 #first user
-first_post = Post.new(user: first_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph)
-second_post = Post.new(user: first_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph)
-third_post = Post.new(user: first_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph)
-fourth_post = Post.new(user: first_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph)
-fifth_post = Post.new(user: first_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph)
+first_post = Post.new(user: first_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph, x_offset: 80, y_offset:280, width: 640, height: 640)
+second_post = Post.new(user: first_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph, x_offset: 80, y_offset:280, width: 640, height: 640)
+third_post = Post.new(user: first_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph, x_offset: 80, y_offset:280, width: 640, height: 640)
+fourth_post = Post.new(user: first_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph, x_offset: 80, y_offset:280, width: 640, height: 640)
+fifth_post = Post.new(user: first_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph, x_offset: 80, y_offset:280, width: 640, height: 640)
 
 first_post.photo.attach(io: File.open(Rails.root.join("db", "sample_images", "photo-1.jpg")), filename: "photo-1.jpg", content_type: "image/jpg")
 second_post.photo.attach(io: File.open(Rails.root.join("db", "sample_images", "photo-2.jpg")), filename: "photo-2.jpg", content_type: "image/jpg")
@@ -38,11 +38,11 @@ fifth_post.photo.attach(io: File.open(Rails.root.join("db", "sample_images", "ph
 [first_post, second_post, third_post, fourth_post, fifth_post].each(&:save)
 
 #secind user
-first_post = Post.new(user: second_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph)
-second_post = Post.new(user: second_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph)
-third_post = Post.new(user: second_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph)
-fourth_post = Post.new(user: second_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph)
-fifth_post = Post.new(user: second_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph)
+first_post = Post.new(user: second_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph, x_offset: 80, y_offset:280, width: 640, height: 640)
+second_post = Post.new(user: second_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph, x_offset: 80, y_offset:280, width: 640, height: 640)
+third_post = Post.new(user: second_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph, x_offset: 80, y_offset:280, width: 640, height: 640)
+fourth_post = Post.new(user: second_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph, x_offset: 80, y_offset:280, width: 640, height: 640)
+fifth_post = Post.new(user: second_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph, x_offset: 80, y_offset:280, width: 640, height: 640)
 
 first_post.photo.attach(io: File.open(Rails.root.join("db", "sample_images", "photo-6.jpg")), filename: "photo-6.jpg", content_type: "image/jpg")
 second_post.photo.attach(io: File.open(Rails.root.join("db", "sample_images", "photo-7.jpg")), filename: "photo-7.jpg", content_type: "image/jpg")
@@ -53,11 +53,11 @@ fifth_post.photo.attach(io: File.open(Rails.root.join("db", "sample_images", "ph
 [first_post, second_post, third_post, fourth_post, fifth_post].each(&:save)
 
 #third user
-first_post = Post.new(user: third_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph)
-second_post = Post.new(user: third_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph)
-third_post = Post.new(user: third_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph)
-fourth_post = Post.new(user: third_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph)
-fifth_post = Post.new(user: third_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph)
+first_post = Post.new(user: third_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph, x_offset: 80, y_offset:280, width: 640, height: 640)
+second_post = Post.new(user: third_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph, x_offset: 80, y_offset:280, width: 640, height: 640)
+third_post = Post.new(user: third_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph, x_offset: 80, y_offset:280, width: 640, height: 640)
+fourth_post = Post.new(user: third_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph, x_offset: 80, y_offset:280, width: 640, height: 640)
+fifth_post = Post.new(user: third_user, filter_name: PhotoFilter::FILTERS.sample, description: Faker::Lorem.paragraph, x_offset: 80, y_offset:280, width: 640, height: 640)
 
 first_post.photo.attach(io: File.open(Rails.root.join("db", "sample_images", "photo-11.jpg")), filename: "photo-11.jpg", content_type: "image/jpg")
 second_post.photo.attach(io: File.open(Rails.root.join("db", "sample_images", "photo-12.jpg")), filename: "photo-12.jpg", content_type: "image/jpg")

@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = [ 'image' ];
   connect() {
     this.element.onload = () => {
-      pixelsJS.filterImg(this.element, "twenties");
+      pixelsJS.filterImg(this.element, this.element.dataset.filter);
     }
   }
 }

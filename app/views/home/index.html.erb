@@ -1,7 +1,12 @@
-<%= Post.find_each do |post| %>
-  <% if post.x_offset && post.y_offset && post.width && post.height %>
-    <%= image_tag post.photo.variant(resize_to_limit: Post::RESIZE_DIMENSIONS, crop: [post.x_offset, post.y_offset, post.width, post.height]) %>
-    <% else %>
-      <%= image_tag post.photo.variant(resize_to_limit: Post::RESIZE_DIMENSIONS) %>
-  <% end %>
-<% end %>
+<div class="d-flex py-4 justify-content-center align-items-center">
+  <div>
+    <%= Post.includes(:user).find_each do |post| %>
+      <div class="mb-4">
+        <p class="mb-1 fw-bold" style="font-size: 13px;"><%= post.user.username %></p>
+        <%= image_tag post.photo.variant(resize_to_fill: Post::RESIZE_DIMENSIONS), data: { controller: "photo-filter", filter: post.filter_name } %><br>
+        <p class="mb-1" style="font-size: 13px;"><span class="fw-bold"><%= post.user.username %></span> <%= post.description %> </>
+      </div>
+      <hr>
+    <% end %>
+  </div>
+</div>
