@@ -18,6 +18,7 @@ gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ] # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'sass-rails', '~> 6.0.0'
 
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -45,3 +46,5 @@ group :test do
   gem "shoulda-matchers", "~> 5.0"
 end
 
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"

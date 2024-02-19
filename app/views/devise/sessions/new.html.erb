@@ -24,7 +24,13 @@
                         <div class="mb-3">
                         <%= f.submit "Log in", class: "btn btn-primary insta-primary w-100" %>
                         </div>
+
+
                     <% end %>
+
+                        <div class="mb-3">
+                        <%= button_to 'Login with Google', user_google_oauth2_omniauth_authorize_path, method: :post, :data => {turbo: "false"} %>
+                        </div>
                     </div>
             </div>
     </div>

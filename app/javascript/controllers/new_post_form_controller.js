@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import Cropper from 'cropperjs';
 
 // Connects to data-controller="new-post-form"
 export default class extends Controller {
