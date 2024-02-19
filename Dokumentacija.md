@@ -1,114 +1,124 @@
-# Avtonet
-Fake Avtonet
+# Instagram-clone
+Instagram-clone made by janmrkonjic
 
 ## Vsebina
 + [O Projektu](#opis)
-+ [Začetki](#zacetki)
-+ [Delovanje](#delovanje)
-+ [Zaključek](#zaključek)
++ [Delovanje](#zacetki)
++ [Zaključek](#zakljucek)
 
 
  
 ## O Projektu <a name = "opis"></a>
-Ime mojega projekta je Fake Avtonet, saj je v bistvu kopija najbolj popularne slovenske spletne strani za iskanje avtomobilov in na splošno vseh motornih vozil. V svojem 
-projektu sem poskušal čim bolj natančno posnemati funkcije, ki jih ponuja originalna spletna stran.
+Ime mojega projekta je Instagram-clone, ker je v bistvu poenostavljena verzija aplikacije instagram.
 
 ## Začetki <a name = "zacetki"></a>
-Na začetku je bilo potrebno seveda narediti nov projekt v orodju VS Code, za katerega sem se odločil. Vedel sem, da bom v prihodnje potreboval tudi ostala orodja, ki sem 
-si jih moral namestiti.
-Namestil sem si Composer s to kodo:
+Na začetku je bilo potrebno seveda narediti nov Ruby projekt, ki sem ga poimenoval Instagram.<br>
+<img width="179" alt="image" src="https://github.com/janmrkonjic/Instagram-Clone/assets/130756503/406504e6-1034-48dc-8705-c25a97d31705">
+
+Delo sem začel z ustvarjanjem login paga, ki sem ga poskusil narediti čim bolj podobnega originalnemu instagram pagu. Uporabil sem tudi official instagram slike, ki jih uporabljajo na njihovi strani.
+
+Za prijavo in registracijo sem uporabil Devise gem: https://github.com/heartcombo/devise
+
+Izgled login strani:<br>
+<img width="353" alt="image" src="https://github.com/janmrkonjic/Instagram-Clone/assets/130756503/f02eefde-5fea-4957-8055-650907258e34">
+
+Izgled register strani:<br>
+<img width="353" alt="image" src="https://github.com/janmrkonjic/Instagram-Clone/assets/130756503/c6941b06-c8aa-4c1b-8d0c-4325027b8326">
+
+Naslednja naloga je bila priprava na izdelovanje posta. Najprej sem se odločil, da bom naredil izdelovanje postov enako, kot je na instagramu.
+Naredil sem ikono, s katero lahko narediš nov post:<br>
+<img width="86" alt="image" src="https://github.com/janmrkonjic/Instagram-Clone/assets/130756503/46bb8065-8832-46fa-8a2e-2baf6d99d7d1">
+
+Ko to klikneš, se prikaže okno, kjer izbereš sliko iz svojega računalnika:<br>
+<img width="371" alt="image" src="https://github.com/janmrkonjic/Instagram-Clone/assets/130756503/b6acbd2f-5f48-4d54-a522-7925a145e996">
+
+Nato sem z uporabo cropperjs omogočil uporabniku, da svoj post izreže, preden ga posta.<br>
+Cropperjs: https://fengyuanchen.github.io/cropperjs/
+
+Uporaba cropperjs:<br>
 ```
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php -r "if (hash_file('sha384', 'composer-setup.php') === 'e21205b207c3ff031906575712edab6f13eb0b361f2085f1f1237b7126d785e826a450292b6cfd1d64d92e6563bbde02') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
-```
-Namestil sem si tudi knjižnici za Google in Facebook login, ki sem ju kasneje potreboval.
-Knjižnica za Google Login:
-```
-composer require google/apiclient
-```
-In še knjižnica za Facebook Login:
-```
-composer require facebook/graph-sdk --ignore-platform-reqs
-```
+<div class="py-4" data-controller="photo-cropper">
+    <h3>Crop picture</h3>
+     <div class="mb-3">
+          <%= image_tag Post.last.photo.variant(resize_to_limit: Post::RESIZE_DIMENSIONS), data: { "photo-cropper-target" => "image" } %>
+     </div>
 
-Pred tem sem si še moral ustvariti račun na spletni strani Google Cloud in na spletni strani Meta for Developers.
-
-Google Cloud: https://cloud.google.com/
-
-Meta for Developers: https://developers.facebook.com/
-
-Delo sem začel z E-r diagramom, v katerem sem naredil vse tabele, ki bodo v bazi in jih med seboj pravilno povezal.
-Kasneje sem datoteko uvozil v bazo in baza je bila pripravljena.
-
-<img width="136" alt="baza" src="https://github.com/janmrkonjic/Avtonet/assets/130756503/e7299e0e-2617-48c8-a123-8f0131e3e583">
-
-Nato sem nadaljeval z login in registration stranjo in sem ju kar hitro uspel narediti.
-
-Naslednja naloga je bila glavna stran, ki mi je vzela kar veliko časa. Na njej lahko iščeš posamezna vozila in oglase, ki se nahajajo na spletni strani.
-
-Naredil sem še ostale strani, npr. stran, kjer lahko objaviš svoj oglas za avto, ali pa stran, kjer lahko vidiš vse oglase in podobno.
-
-Na koncu sta me čakala samo še Google in Facebook login, ki sem ju z nekaj težavammi uspešno implementiral.
-
-<img width="466" alt="image" src="https://github.com/janmrkonjic/Avtonet/assets/130756503/0375df99-df7b-4794-8c9a-27f2bddb89b9">
-
-## Delovanje <a name = "delovanje"></a>
-Na začetku lahko na moji spletni strani iščeš oglase tudi brez prijave. Lahko vidiš vse oglase ali pa jih ročno iščeš.
-
-<img width="943" alt="image" src="https://github.com/janmrkonjic/Avtonet/assets/130756503/2c0a5da2-3e50-46d0-9807-20153ad2aec8">
-
-Del kode za iskanje s pomočjo select inputa:
-
-```
-         <!-- Brand filter -->
-         <select name="znamka" id="brand">
-            <option value="">Znamka</option>
-            <!-- Populate the options dynamically using PHP -->
-            <?php
-
-                // Query to retrieve brands from the "znamke" table
-                $query = "SELECT id, ime FROM znamke"; // Selecting id and ime columns
-                $stmt = $pdo->prepare($query);
-                $stmt->execute();
-                $brands = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                foreach ($brands as $brand) {
-                    echo '<option value="' . $brand['id'] . '">' . $brand['ime'] . '</option>';
-                }
-  
-            ?>
+    <%= form_with model: @post, data: { "photo-cropper-target" => "form" } do |f| %>
+         <%= f.hidden_field :x_offset, data: { "photo-cropper-target" => "xOffset" } %>
+        <%= f.hidden_field :y_offset, data: { "photo-cropper-target" => "yOffset" } %>
+         <%= f.hidden_field :width, data: { "photo-cropper-target" => "width" } %>
+         <%= f.hidden_field :height, data: { "photo-cropper-target" => "height" } %>
+         <%= f.hidden_field :status, value: "applying_filter" %>
+        <%= f.submit "Crop picture", class:"btn btn-primary insta-primary" %>
+     <% end %>
+ </div>
 ```
 
-Če želiš objaviti svoj oglas, se je potrebno registrirati, ali pa prijaviti z Googlom ali Facebookom.
+Izgled croppanja slike:<br>
+<img width="590" alt="image" src="https://github.com/janmrkonjic/Instagram-Clone/assets/130756503/5cedc7d9-ec56-4eed-b175-3db3ecb9b8a5">
 
-<img width="459" alt="image" src="https://github.com/janmrkonjic/Avtonet/assets/130756503/571248a9-9bf4-4ba6-a75a-16b2b89489ca">
+Ko si zadovoljen z izrezano sliko, ji lahko še dodaš filter. To sem naredil s Pixelsjs.<br>
+Pixelsjs: https://pixelsjs.readthedocs.io/en/latest/
 
-Ko se uspešno prijaviš, lahko dodaš tudi svoj oglas, ki bo viden vsem uporabnikom. Objaviš lahko tudi sliko vozila.
+Izbira filtra in prikaz slike z dodanim filtrom:<br>
+<img width="556" alt="image" src="https://github.com/janmrkonjic/Instagram-Clone/assets/130756503/4d889c40-b62d-42e2-a791-372aca56ab93">
 
-<img width="938" alt="image" src="https://github.com/janmrkonjic/Avtonet/assets/130756503/87dbb6b1-6ee2-4cab-804e-19f3101baa32">
+Koda za stran, kjer si izbereš filter:
+```
+<div class="py-5 d-flex justify-content-center align-items-center" data-controller="apply-filter">
+    <div>
+    <h1 class="fs-3">Applying filters</h1>
+        <%= image_tag @post.photo.variant(resize_to_limit: Post::RESIZE_DIMENSIONS,
+        crop: [@post.x_offset.to_f, @post.y_offset.to_f, @post.width.to_f, @post.height.to_f]), 
+        data: { "apply-filter-target" => "hiddenImage", filter: "" }, 
+        class: "mb-5 d-none" %>
 
-Admin ima posebej stran, do katere lahko dostopa samo on in tam lahko izbriše oglase in uporabnike te spletne strani.
+        <%= image_tag @post.photo.variant(resize_to_limit: Post::RESIZE_DIMENSIONS, 
+        crop: [@post.x_offset.to_f, @post.y_offset.to_f, @post.width.to_f, @post.height.to_f]), 
+        data: { "apply-filter-target" => "image", filter: "" }, 
+        class: "mb-5" %>
 
-<img width="437" alt="image" src="https://github.com/janmrkonjic/Avtonet/assets/130756503/10dd4f6a-1138-42fd-8d5c-8354d5f76bdd">
+        <div class="d-flex align-content-around flex-wrap mb-5">
+            <% PhotoFilter::FILTERS.each do |filter| %>
+                <%= button_tag filter, data: { "apply-filter-target" => "filterButton", "action" => "apply-filter#applyFilter", "filter-name" => filter }, class: "btn btn-primary insta-primary me-2 mb-2" %>
+            <% end %>
+        </div>
+        
+        <%= form_with model: @post, data: { "apply-filter-target" => "form" } do |f| %>
+            <%= f.hidden_field :filter_name, data: { "apply-filter-target" => "filterName" } %>
+            <%= f.hidden_field :status, value: "final_draft" %>
+            <%= f.submit "Apply filter", class: "btn btn-primary insta-primary" %>
+        <% end %>
+        </div>
+</div>
+```
 
-<img width="544" alt="image" src="https://github.com/janmrkonjic/Avtonet/assets/130756503/9f438330-8e09-4d18-8f80-35244bc420fb">
+Še zadnja stvar preden se post objavi je, da lahko uporabnik doda opis postu.<br>
+<img width="303" alt="image" src="https://github.com/janmrkonjic/Instagram-Clone/assets/130756503/d8e422b5-d270-468c-9c37-6908b5d30e86">
 
-Seveda ima do te strani dostop samo admin, saj sem s kodo ostalim uporabnikom dostop onemogočil.
+Na homepagu lahko vidimo prikazan nov post. Vidimo lahko username (email) uporabnika, opis ter datum, kdaj je bil post ustvarjen.<br>
+<img width="399" alt="image" src="https://github.com/janmrkonjic/Instagram-Clone/assets/130756503/65b5875e-8144-4562-b8a0-54e41127d7e2">
+
+Končna koda za homepage:<br>
+```
+<div class="d-flex py-4 justify-content-center align-items-center">
+  <div>
+    <% Post.includes(:user).order(created_at: :desc).each do |post| %>
+      <div class="mb-4">
+        <p class="mb-1 fw-bold" style="font-size: 13px;"><%= post.user.email %></p>
+        <%= image_tag post.photo.variant(resize_to_fill: Post::RESIZE_DIMENSIONS), data: { controller: "photo-filter", filter: post.filter_name } %><br>
+        <p class="mb-1" style="font-size: 13px;"><span class="fw-bold"><%= post.user.email %></span> <%= post.description %> </p>
+        <p class="mb-1" style="font-size: 12px; color: #999;"><%= post.created_at.strftime("%B %d, %Y %I:%M %p") %></p>
+      </div>
+      <hr>
+    <% end %>
+  </div>
+</div>
 
 ```
-function adminOnly() {
-    //če ni admin, ga preusmeri na index
-    if (!isAdmin()) {
-        header("Location: index.php");
-        die();
-    }
-}
-```
-Velik pomen v mojem projektu ima tudi podatkovna baza, saj se v njo shranjujejo vsi podatki. Lahko vidiš kateri uporabniki so vnešeni, kateri oglasi so v bazi... V bazi so prav tako tudi znamke, modeli in barve vozil, za lažje vnašanje in dodajanje novih oglasov za uporabnike.
 
-<img width="616" alt="image" src="https://github.com/janmrkonjic/Avtonet/assets/130756503/d8bb2eb1-2b53-494b-9450-bcf82c3561ff">
+Vidimo lahko tudi vse druge poste, ki so bili objavljeni in kdo ter kdaj jih je objavil:<br>
+<img width="481" alt="image" src="https://github.com/janmrkonjic/Instagram-Clone/assets/130756503/db82084a-6e7f-4a87-b063-9b74df7245e1">
 
-## Zaključek <a name = "zacetki"></a>
-Ta projekt mi je še dodatno pomagal nadgraditi moje znanje programskega jezika php. Znanje iz lanskega leta sem dopolnim še z veliko nove kode, ki je bila bolje in učinkoviteje napisana, ter prijavo, ki je bila varnejša kot prej, saj je bila nareta s pdo. Iz tega projekta sem odnesel veliko novega znanja in se v prihodnosti že veselim novih projektov.
+## Zaključek <a name = "zakljucek"></a>
+Ta projekt mi je še dodatno pomagal nadgraditi moje znanje v Ruby on Rails. Čeprav sem imel na trenutke precej veliko težav, se je na koncu vse izplačalo in sem dokončal projekt uspešno. Iz tega projekta sem odnesel veliko novega znanja in se v prihodnosti že veselim novih projektov.
