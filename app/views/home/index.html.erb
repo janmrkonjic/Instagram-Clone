@@ -1,6 +1,6 @@
 <div class="d-flex py-4 justify-content-center align-items-center">
   <div>
-    <%= Post.includes(:user).order(created_at: :desc).find_each do |post| %>
+    <% Post.includes(:user).order(created_at: :desc).each do |post| %>
       <div class="mb-4">
         <p class="mb-1 fw-bold" style="font-size: 13px;"><%= post.user.email %></p>
         <%= image_tag post.photo.variant(resize_to_fill: Post::RESIZE_DIMENSIONS), data: { controller: "photo-filter", filter: post.filter_name } %><br>
