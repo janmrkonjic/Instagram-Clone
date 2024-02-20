@@ -23,7 +23,7 @@
     "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn build:css\""
   },
   "engines": {
-    "node": "12.16.2"
+    "node": "16.13.0"
   },
   "browserslist": [
     "defaults"
