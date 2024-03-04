@@ -2,9 +2,9 @@
   <div>
     <% Post.includes(:user).order(created_at: :desc).each do |post| %>
       <div class="mb-4">
-        <p class="mb-1 fw-bold" style="font-size: 13px;"><%= post.user.email %></p>
+        <p class="mb-1 fw-bold" style="font-size: 13px;"><%= post.user.username %></p>
         <%= image_tag post.photo.variant(resize_to_fill: Post::RESIZE_DIMENSIONS), data: { controller: "photo-filter", filter: post.filter_name } %><br>
-        <p class="mb-1" style="font-size: 13px;"><span class="fw-bold"><%= post.user.email %></span> <%= post.description %> </p>
+        <p class="mb-1" style="font-size: 13px;"><span class="fw-bold"><%= post.user.username %></span> <%= post.description %> </p>
         <p class="mb-1" style="font-size: 12px; color: #999;"><%= post.created_at.strftime("%B %d, %Y %I:%M %p") %></p>
       </div>
       <hr>

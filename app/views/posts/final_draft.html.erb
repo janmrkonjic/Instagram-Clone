@@ -8,7 +8,7 @@
     <%= form_with model: @post, data: { "apply-filter-target" => "form" } do |f| %>
         <%= f.hidden_field :status, value: "published" %>
         <div class="mb-3">
-            <%= f.text_area :description, class:"form-control" %>
+            <%= f.rich_text_area :description, class:"form-control" %>
         </div>
         <%= f.submit "Post", class: "btn btn-primary insta-primary" %>
     <% end %>
