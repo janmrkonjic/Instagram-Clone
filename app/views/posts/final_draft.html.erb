@@ -4,7 +4,7 @@
     <%= image_tag @post.photo.variant(resize_to_limit: Post::RESIZE_DIMENSIONS,
     crop: [@post.x_offset.to_f, @post.y_offset.to_f, @post.width.to_f, @post.height.to_f]), 
     data: { controller:"photo-filter", filter: @post.filter_name }, 
-    class: "mb-5" %>
+    class: "mb-5", style: "width:300px" %>
     <%= form_with model: @post, data: { "apply-filter-target" => "form" } do |f| %>
         <%= f.hidden_field :status, value: "published" %>
         <div class="mb-3">

@@ -4,12 +4,12 @@
         <%= image_tag @post.photo.variant(resize_to_limit: [1500, 1500],
         crop: [@post.x_offset.to_f, @post.y_offset.to_f, @post.width.to_f, @post.height.to_f]), 
         data: { "apply-filter-target" => "hiddenImage", filter: "" }, 
-        class: "mb-5 d-none" %>
+        class: "mb-5 d-none", style: "width:500px" %>
 
         <%= image_tag @post.photo.variant(resize_to_limit: [1500, 1500], 
         crop: [@post.x_offset.to_f, @post.y_offset.to_f, @post.width.to_f, @post.height.to_f]), 
         data: { "apply-filter-target" => "image", filter: "" }, 
-        class: "mb-5" %>
+        class: "mb-5", style: "width:500px" %>
 
         <div class="d-flex align-content-around flex-wrap mb-5">
             <% PhotoFilter::FILTERS.each do |filter| %>

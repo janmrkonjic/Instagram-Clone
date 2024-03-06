@@ -9,7 +9,7 @@
         <%= f.hidden_field :y_offset, data: { "photo-cropper-target" => "yOffset" } %>
         <%= f.hidden_field :width, data: { "photo-cropper-target" => "width" } %>
         <%= f.hidden_field :height, data: { "photo-cropper-target" => "height" } %>
-        <%= f.hidden_field :status, value: "applying_filter" %>
+        <%= f.hidden_field :status, value: "final_draft" %>
         <%= f.submit "Crop Picture", class: "btn btn-primary insta-primary" %>
     <% end %>
 </div>
