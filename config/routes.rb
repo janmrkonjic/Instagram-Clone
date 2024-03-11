@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   
   root "home#index"
 
-  resources :posts, only: [:create, :edit, :update]
+  resources :posts, only: [:create, :edit, :update] do
+    resources :likes
+  end
+
+  resources :comments
+
 
 end
